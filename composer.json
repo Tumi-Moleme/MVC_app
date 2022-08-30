@@ -1,0 +1,16 @@
+{
+    "name": "sub-user/best_products_crud",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Moleme Tumalano"
+        }
+    ],
+    "require": {}
+}
