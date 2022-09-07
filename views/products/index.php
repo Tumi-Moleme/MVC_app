@@ -1,5 +1,5 @@
 <h2 class="py-3">Products CRUD</h2>
-<p> <a href="create.php" class="btn btn-success">Create Product</a></p>
+<p> <a href="/products/create" class="btn btn-success">Create Product</a></p>
 
 <!-- ---------- Search bar ---------- -->
 <form action="" method="get">

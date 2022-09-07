@@ -11,7 +11,7 @@ class Router
 
   public function __construct()
   {
-    $this->db = new Database;
+    $this->db = new Database();
   }
   public function get($url, $fn)
   {
