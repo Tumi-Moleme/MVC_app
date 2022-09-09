@@ -31,29 +31,47 @@ class ProductController
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $productData['title'] = $_POST[''];
       $productData['description'] = $_POST['description'];
-      $productData['price'] = $_POST['price'];
+      $productData['price'] = (float) $_POST['price'];
       $productData['imageFile'] = $_FILES['image'] ?? null;
 
       $product = new Product();
       $product->load($productData);
-      $product->save();
-      header('Location: /products');
-      exit;
+      $errors = $product->save();
+      if (empty($errors)) {
+        header('Location: /products');
+        exit;
+      }
     }
     $router->renderView('products/create', [
       'product' => $productData,
       'errors' => $errors
     ]);
   }
+  
   public function update(Router $router)
   {
-    $router->renderView('product/index', [
-      'products' => $product,
-      'search'  => $search
+
+    $id = $_GET['id'] ?? null;
+    if (!$id) {
+      header('Location: /products');
+      exit;
+    }
+
+    $productData = $router->db->getProductById($id);
+
+    $router->renderView('products/update', [
+      'product' => $productData
     ]);
   }
-  public function delete()
+
+  public function delete(Router $router)
   {
-    echo "delete";
+    $id = $_POST['id'] ?? null;
+    if (!$id) {
+      header('Location: /products');
+      exit;
+    }
+    $router->db->deleteProduct($id);
+    header('Location: /products');
   }
 }
