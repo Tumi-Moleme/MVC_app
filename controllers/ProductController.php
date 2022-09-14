@@ -74,6 +74,10 @@ class ProductController
         exit;
       }
     }
+      
+
+    $productData = $router->db->getProductById($id);
+
     $router->renderView('products/update', [
       'product' => $productData,
       'errors' => $errors
