@@ -31,18 +31,20 @@
     </thead>
     <tbody>
 
-      <?php foreach ($products as $product) : ?>
+      <?php foreach ($products as $i => $product) : ?>
         <tr>
-          <td><?php echo $product['id']; ?></td>
+          <td><?php echo $i + 1; ?></td>
           <td>
-            <img src="<?php echo $product['image'] ?>" class="thumb-image" alt="<?php echo $product['title'] ?>">
+            <?php if ($product['image']):?>
+            <img src="/<?php echo $product['image'] ?>" class="thumb-image" alt="<?php echo $product['title'] ?>">
+            <?php endif;?>
           </td>
           <td><?php echo $product['title']; ?></td>
           <td><?php echo "R " . $product['price']; ?></td>
           <td><?php echo $product['create_date']; ?></td>
           <td>
-            <a href="update.php?id=<?php echo $product['id']; ?>" class="btn btn-outline-primary">Edit</a>
-            <form style="display: inline-block" action="delete.php " method="POST">
+            <a href="/products/update?id=<?php echo $product['id']; ?>" class="btn btn-outline-primary">Edit</a>
+            <form style="display: inline-block" action="/products/delete " method="POST">
               <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
               <button type="submit" class="btn btn-outline-danger">Delete</button>
             </form>
